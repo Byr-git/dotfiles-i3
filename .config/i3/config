@@ -1,0 +1,174 @@
+set $mod Mod4
+
+# Font for window titles
+font pango:monospace 8
+
+# Start XDG autostart .desktop files using dex
+exec --no-startup-id dex --autostart --environment i3
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork 
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# move tiling windows by left-clicking into the title bar or left-clicking anywhere
+tiling_drag modifier titlebar
+
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# change window split (hor / ver)
+# bindsym $mod+h split h
+# bindsym $mod+v split v
+
+# fullscreen mode for the focused container
+bindsym $mod+F11 fullscreen toggle
+
+# change container layout (toggle split / tabbed / stacking)
+bindsym $mod+Tab layout toggle tabbed split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# focus the container (parent/child)
+#bindsym $mod+a focus parent
+#bindsym $mod+d focus child
+
+# Scratchpad
+bindsym $mod+masculine scratchpad show
+bindsym $mod+Shift+masculine move scratchpad
+
+# workspaces
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+
+# switch workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+mode "sistema" {
+    bindsym c reload
+    bindsym r restart
+    bindsym e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+    bindsym Escape mode "default"
+}
+bindsym $mod+Escape mode "sistema"
+
+mode "M: 󰆾" {
+    bindsym Left move left
+    bindsym Down move down
+    bindsym Up move up
+    bindsym Right move right
+
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+
+bindsym $mod+m mode "M: 󰆾"
+
+mode "M: 󰩨" {
+    bindsym Left resize shrink width 50 px or 10 ppt
+    bindsym Down resize grow height 50 px or 10 ppt
+    bindsym Up resize shrink height 50 px or 10 ppt
+    bindsym Right resize grow width 50 px or 10 ppt
+
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "M: 󰩨", exec --no-startup-id notify-send -u low -i "~/Imágenes/icons/indicator-messages.svg" "i3wm Mode:" "Modo Rezise (Activado)"
+
+mode "M: " {
+    bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+7 i3blocks
+    bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+7 i3blocks
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -SIGRTMIN+7 i3blocks
+    
+    # multimedia
+    bindsym Right exec --no-startup-id playerctl next
+    bindsym Left exec --no-startup-id playerctl previous
+    bindsym space exec --no-startup-id playerctl play-pause
+
+    bindsym Escape mode "default"
+    bindsym $mod+v mode "default"
+}
+bindsym $mod+v mode "M: ", exec --no-startup-id notify-send -u low -i "~/Imágenes/icons/indicator-messages.svg" "i3wm Mode:" "Modo Volumen (Activado)"
+
+bar {
+    status_command i3blocks
+    position top
+    #height 14
+    modifier none
+    font pango:Arimo Nerd Font Regular 8
+    strip_workspace_numbers yes
+
+    colors {
+    #statusline	#000000
+    #background	#0E1922
+    #separator	#D3D7CF
+
+    #name              #border #bg     #text
+    focused_workspace  #131519 #303F9F #D3D7CF
+    active_workspace   #131519 #0f1316 #D3D7CF
+    inactive_workspace #131519 #0f1316 #D3D7CF
+    urgent_workspace   #131519 #00796B #FFFFFF
+    }
+}
+
+title_align center
+# bordes
+default_border pixel 1
+default_floating_border pixel 1
+smart_borders on
+gaps inner 6
+
+# colores de los bordes de ventana
+# class                 border  backgr. text    indicator child_border
+client.focused          #131519 #222E73 #FFFFFF #00796B   #303F9F
+client.unfocused        #131519 #131519 #ADADAD #00796B   #222222
+
+# Ejecuciones al inicio
+exec --no-startup-id xwallpaper --center /home/suta/Wallpapers/wallpaper-4-zy3yev.png
+exec --no-startup-id lxpolkit
+exec --no-startup-id setxkbmap -option esperanto:qwerty
+
+# shortcuts
+bindsym $mod+x exec rofi -show drun
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym --release $mod+b bar mode toggle
+bindsym $mod+Return exec lxterminal
+bindsym $mod+f exec pcmanfm
+bindsym $mod+w exec gtk-launch chromium
+bindsym Print exec --no-startup-id ~/Documentos/Scripts/screenshoot.sh
+
+# reglas
+for_window [title="kazam"] floating enable

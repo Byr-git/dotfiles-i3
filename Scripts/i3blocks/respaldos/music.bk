@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Click izquierdo → play / pause
+if [[ "$BLOCK_BUTTON" == "1" ]]; then
+    playerctl play-pause 2>/dev/null
+fi
+
+status=$(playerctl status 2>/dev/null)
+MAX=32
+
+# ───────────── PLAYING ─────────────
+if [[ "$status" == "Playing" ]]; then
+    artist=$(playerctl metadata artist 2>/dev/null)
+    title=$(playerctl metadata title 2>/dev/null)
+
+    # Recortar título
+    if [[ ${#title} -gt $MAX ]]; then
+        title="${title:0:$MAX}…"
+    fi
+
+    state_text="Playing 󰐊"
+
+    if [[ -n "$artist" ]]; then
+        echo "<span foreground='#303F9F' background='#ffffff'>  </span>\
+<span><span foreground='#ffffff' background='#263380'>   $state_text<span foreground='#0C1240'></span></span>\
+<span background='#0C1240'>  $artist  $title</span>\
+<span background='#000000' foreground='#0C1240'></span></span>"
+    else
+        echo "<span foreground='#303F9F' background='#ffffff'>  </span>\
+<span><span foreground='#ffffff' background='#263380'>   $state_text<span foreground='#0C1240'></span></span>\
+<span background='#0C1240'>  $title </span>\
+<span background='#000000' foreground='#0C1240'></span></span>"
+    fi
+
+# ───────────── PAUSED ─────────────
+elif [[ "$status" == "Paused" ]]; then
+    artist=$(playerctl metadata artist 2>/dev/null)
+    title=$(playerctl metadata title 2>/dev/null)
+
+    if [[ ${#title} -gt $MAX ]]; then
+        title="${title:0:$MAX}…"
+    fi
+
+    state_text="Paused 󰏤"
+
+    if [[ -n "$artist" ]]; then
+        echo "<span foreground='#303F9F' background='#ffffff'>  </span>\
+<span><span foreground='#ffffff' background='#263380'>   $state_text<span foreground='#0C1240'></span></span>\
+<span background='#0C1240'>  $artist  $title</span>\
+<span background='#000000' foreground='#0C1240'></span></span>"
+    else
+        echo "<span foreground='#303F9F' background='#ffffff'>  </span>\
+<span><span foreground='#ffffff' background='#263380'>   $state_text<span foreground='#0C1240'></span></span>\
+<span background='#0C1240'>  $title </span>\
+<span background='#000000' foreground='#0C1240'></span></span>"
+    fi
+
+# ───────────── STOPPED / NADA ─────────────
+else
+    echo "<span foreground='#303F9F' background='#ffffff'>  </span>\
+<span background='#303F9F'>  --- </span>\
+<span foreground='#303F9F' background='#000000'> </span>"
+fi

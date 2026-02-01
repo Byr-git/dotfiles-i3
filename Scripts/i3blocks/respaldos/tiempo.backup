@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Alinear al próximo :00 antes de entrar al bucle
+sleep $((60 - $(date +%S)))
+
+while true; do
+    printf "<span foreground='#0C1240' background='#ffffff'> 󰥔 </span><span background='#263380'>  %s </span><span foreground='#263380' background='#000000'> </span>\n" "$(date '+%H:%M  %d-%m-%Y')"
+
+    # Dormir hasta el siguiente minuto exacto
+    sleep $((60 - $(date +%S)))
+done

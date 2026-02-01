@@ -1,0 +1,63 @@
+# i3status configuration file.
+# Config by Suta
+
+general {
+        colors = false
+        interval = 5
+        color_good = "#919753"
+        color_degraded = "#EBCB8B"
+        color_bad = "#A35151"
+        markup = pango
+}
+
+# order += "ipv6"
+# order += "wireless _first_"
+order += "ethernet _first_"
+order += "load"
+order += "battery all"
+order += "disk /"
+order += "memory"
+order += "volume master"
+order += "tztime date"
+
+# wireless _first_ {
+#         format_up = "W: (%quality at %essid) %ip"
+#         format_down = "W: down"
+# }
+
+ethernet _first_ {
+	format_up = "<span foreground='#1871C9' background='#ffffff'>  </span><span background='#1871C9'>  %speed </span><span foreground='#1871C9' background='#000000'> </span>"
+        format_down = "<span foreground='#1871C9 background='#ffffff''>  </span><span background='#1871C9'> Down </span><span foreground='#1871C9' background='#000000'> </span>"
+	separator_block_width = 0
+
+}
+
+load {
+        format = "<span foreground='#00796B' background='#ffffff'>  </span><span background='#00796B'>  %1min </span><span foreground='#00796B' background='#000000'> </span>"
+	separator_block_width = 0
+
+}
+
+disk "/" {
+        format = "<span foreground='#303F9F' background='#ffffff'>  </span><span background='#303F9F'>  %avail </span><span foreground='#303F9F' background='#000000'> </span>"
+	separator_block_width = 0
+
+}
+
+memory {
+	format = "<span foreground='#00796B' background='#ffffff'>  </span><span background='#00796B'>  %used  %available </span><span foreground='#00796B' background='#000000'> </span>"
+	threshold_degraded = 1G
+	format_degraded = "<span foreground='#00796B' background='#ffffff'>  </span><span background='#00796B'>  %available </span><span foreground='#00796B' background='#000000'> </span>"
+	separator_block_width = 0
+}
+
+volume master {
+        format = "<span foreground='#1871C9' background='#ffffff'>  </span><span background='#1871C9'>  %volume</span><span foreground='#1871C9' background='#000000'> </span>"
+        format_muted = "<span foreground='#1871C9' background='#ffffff'>  </span><span background='#1871C9'>  Muted </span><span foreground='#1871C9' background='#000000'> </span>"
+        device = "pulse"
+	separator_block_width = 0
+}
+
+tztime date {
+	format = "<span foreground='#303F9F' background='#ffffff'> 󰥔 </span><span background='#303F9F'>  %H:%M:%S  %d-%m-%y </span><span foreground='#303F9F' background='#000000'> </span>"
+}

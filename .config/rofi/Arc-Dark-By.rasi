@@ -1,0 +1,83 @@
+/*********************************
+ * Minimal Rofi Theme
+ *********************************/
+
+* {
+    bg:        #0F1011;
+    bg-alt:    rgba(49, 50, 68, 60%);
+    fg:        #ffffff;
+    fg-muted:  #ffffff;
+    accent:    #263380;
+    highlight: bold #FFEB80;
+    shadow:   black;
+
+
+    background-color: transparent;
+    text-color: @fg;
+    spacing: 8;
+    font: "Arimo Nerd Font Mono 10";
+}
+
+/* Window */
+window {
+    width: 400px;
+    padding: 10px;
+    background-color: @bg;
+    border-radius: 0px;
+    border: 1px;
+    border-color: @fg;
+}
+
+/* Main container */
+mainbox {
+    padding: 0;
+    border: 0;
+}
+
+/* Input */
+inputbar {
+    children: [ entry ];
+    padding: 10px;
+    margin: 0 0 0 0;
+    background-color: @bg-alt;
+    border-radius: 10px;
+    border: 0 0 3px 0;
+    border-color: black;
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "    Aplicaciones ";
+    horizontal-align: 0.5;
+}
+
+/* List */
+listview {
+    lines: 6;
+    spacing: 0px;
+    scrollbar: false;
+}
+
+/* Elements */
+element {
+    padding: 7px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+element-text {
+    text-color: @fg-muted;
+    margin: 0 0 0 10px;
+    highlight: @highlight;
+}
+
+/* Selected element */
+element selected {
+    background-color: @accent;
+    border: 0 0 3px 0;
+    border-color: black;
+}
+
+element selected element-text {
+    text-color: #1e1e2e;
+}

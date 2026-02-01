@@ -1,0 +1,7 @@
+{
+    "telemetry.feedback.enabled": false,
+    "redhat.telemetry.enabled": false,
+    "workbench.startupEditor": "none",
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "compact"
+}

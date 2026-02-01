@@ -1,0 +1,6 @@
+configuration {
+    display-drun: "Apps";
+    drun-display-format: "{name}";
+}
+
+@theme "Arc-Dark-By.rasi"

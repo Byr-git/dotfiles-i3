@@ -1,0 +1,33 @@
+[global]
+default_icon = ""
+frame_color = "#f1f1f1"
+frame_width = 1
+separator_color = "#313244"
+highlight = "#1871C9"
+corner_radius = 10
+max_icon_size = 128
+offset = 5x25
+separator_height = 5
+padding = 8
+horizontal_padding = 15
+#alignment = center
+width = 248
+
+progress_bar = true
+progress_bar_height = 8
+progress_bar_min_width = 100
+progress_bar_max_width = 275
+
+[urgency_low]
+background = "#0F1011"
+foreground = "#cdd6f4"
+timeout = 2
+
+[urgency_normal]
+background = "#0F1011"
+foreground = "#cdd6f4"
+
+[urgency_critical]
+background = "#0F1011"
+foreground = "#cdd6f4"
+frame_color = "#fab387"
