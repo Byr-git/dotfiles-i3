@@ -126,7 +126,7 @@ echo $PATH | grep -Eq "(^|:)/sbin(:|)"     || PATH=$PATH:/sbin
 echo $PATH | grep -Eq "(^|:)/usr/sbin(:|)" || PATH=$PATH:/usr/sbin
 
 # PS1='\[\e[38;5;171;1m\]\u\[\e[39m\]@\[\e[38;5;141m\]\h\[\e[39m\]:\[\e[38;5;171m\]\w\[\e[39m\]\\$\[\e[0m\] \n\[\e[38;5;171;1m\]󰅂\[\e[0m\] '
-# export PS1="\[$(tput bold)\]\[\033[38;5;75m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;9m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;76m\]\w\[$(tput sgr0)\]\[$(tput bold)\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]"
+export PS1='\[\e[1m\][\[\e[38;5;134m\]\u\[\e[39m\]]\[\e[2m\]:\[\e[0;1m\][\[\e[38;5;68m\]\w\[\e[39m\]]\[\e[2m\]:\[\e[0;1;38;5;134m\]\$\[\e[0m\] \n\[\e[1m\]\[\e[0m\] '
 
 # Optimización de compilación personalizada
 export CFLAGS="-O2 -march=native -mtune=native"
