@@ -128,7 +128,7 @@ bar {
     position top
     #height 14
     modifier none
-    font pango:Arimo Nerd Font Regular 8
+    font pango:Arimo Nerd Font Regular 8.2
     strip_workspace_numbers yes
 
     colors {
@@ -157,7 +157,7 @@ client.focused          #131519 #222E73 #FFFFFF #00796B   #303F9F
 client.unfocused        #131519 #131519 #ADADAD #00796B   #222222
 
 # Ejecuciones al inicio
-exec --no-startup-id xwallpaper --center /home/suta/Wallpapers/wallpaper-4-zy3yev.png
+exec --no-startup-id ~/Scripts/change-wallpaper.sh apply
 exec --no-startup-id lxpolkit
 exec --no-startup-id setxkbmap -option esperanto:qwerty
 
@@ -168,7 +168,7 @@ bindsym --release $mod+b bar mode toggle
 bindsym $mod+Return exec lxterminal
 bindsym $mod+f exec pcmanfm
 bindsym $mod+w exec gtk-launch chromium
-bindsym Print exec --no-startup-id ~/Documentos/Scripts/screenshoot.sh
+bindsym Print exec --no-startup-id ~/Scripts/screenshoot.sh
 
 # reglas
 for_window [title="kazam"] floating enable
