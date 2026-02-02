@@ -1,26 +1,32 @@
 #!/bin/bash
 
 WALLPAPERS="$HOME/Wallpapers"
-I3CONFIG="$HOME/.config/i3/config"
-DMENU=(dmenu -i -c -l 6 -bw 1 -h 30 -fn "Arimo Nerd Font-10" -sb "#263380" -nb "#0F1011" -nf '#ebdbb2' -p "󰸉 Wallpapers: ")
+STATE="$HOME/.cache/current_wallpaper"
 
-chosen=$(ls "$WALLPAPERS" | grep -Ei '\.(jpg|png|jpeg)$' | "${DMENU[@]}")
+apply_wallpaper() {
+    [ -f "$STATE" ] && xwallpaper --center "$(cat "$STATE")"
+}
 
-[ -z "$chosen" ] && exit 0
+choose_wallpaper() {
+    DMENU=(dmenu -i -c -l 6 -bw 1 -h 30 -fn "Arimo Nerd Font-10" -sb "#263380" -nb "#0F1011" -nf '#ebdbb2' -p "󰸉 Wallpapers: ")
 
-fullpath="$WALLPAPERS/$chosen"
+    chosen=$(ls "$WALLPAPERS" | grep -Ei '\.(jpg|png|jpeg)$' | "${DMENU[@]}")
+    [ -z "$chosen" ] && exit 0
 
-# Cambiar fondo
-notify-send -i "$fullpath" "Wallpaper" "Cambiado correctamente"
-xwallpaper --center "$fullpath"
+    fullpath="$WALLPAPERS/$chosen"
 
-# Escapar ruta
-escaped=$(printf '%q\n' "$fullpath")
+    # Cambiar fondo
+    xwallpaper --center "$fullpath"
+    printf '%s\n' "$fullpath" > "$STATE"
 
-# Actualizar config de i3
-sed -i \
-  "s|^exec --no-startup-id xwallpaper.*|exec --no-startup-id xwallpaper --center $fullpath|" \
-  "$I3CONFIG"
+    notify-send -u low -i "$fullpath" "Wallpaper" "Cambiado correctamente"
+}
 
-# Salir explícitamente
-exit 0
+case "$1" in
+    apply)
+        apply_wallpaper
+        ;;
+    choose|"")
+        choose_wallpaper
+        ;;
+esac
