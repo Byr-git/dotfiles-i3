@@ -5,79 +5,103 @@
 * {
     bg:        #0F1011;
     bg-alt:    rgba(49, 50, 68, 60%);
+    bg-light:  #1A1A1A;
     fg:        #ffffff;
     fg-muted:  #ffffff;
     accent:    #263380;
     highlight: bold #FFEB80;
-    shadow:   black;
-
+    shadow:    #0A0A0A;
 
     background-color: transparent;
     text-color: @fg;
-    spacing: 8;
-    font: "Arimo Nerd Font Mono 10";
+    font: "Arimo Nerd Font Mono 9";
 }
 
 /* Window */
 window {
     width: 400px;
-    padding: 10px;
+    location: center;
+    anchor: north;
+    y-offset: -120px;
     background-color: @bg;
-    border-radius: 0px;
     border: 1px;
     border-color: @fg;
 }
 
-/* Main container */
 mainbox {
-    padding: 0;
-    border: 0;
+    spacing: 15px; /* Espacio entre el inputbar y la lista */
+    children: [ inputbar, listview ];
 }
 
-/* Input */
+/* Contenedor del Input */
 inputbar {
-    children: [ entry ];
-    padding: 10px;
-    margin: 0 0 0 0;
+    children: [ prompt, entry ];
+    spacing: 10px; /* SEPARACIÓN ENTRE ICONO Y ENTRY */
+    orientation: horizontal;
+	margin: 15px 15px 0px 15px;
+    enabled: true;
+}
+
+/* El prompt ahora hereda el estilo del icono */
+prompt {
+    enabled: true;
+    padding: 15px 17px 15px 15px;
     background-color: @bg-alt;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 0 0 3px 0;
-    border-color: black;
-}
-
-entry {
+    border-color: @shadow;
+    vertical-align: 0.5;
     text-color: @fg;
-    placeholder: "    Aplicaciones ";
-    horizontal-align: 0.5;
+    background-color: @accent;
 }
 
-/* List */
+/* Icono */
+textbox-search-icon {
+    expand: false;
+    str: "";
+    background-color: @bg-alt; /* Fondo propio */
+    border-radius: 5px;
+    border: 0 0 3px 0;
+    border-color: @shadow;
+    vertical-align: 0.5;
+    text-color: @fg;
+}
+
+/* Elemento Independiente: Entrada de texto */
+entry {
+    expand: true;
+    padding: 12px;
+    background-color: @bg-alt; /* Fondo propio */
+    border-radius: 5px;
+    border: 0 0 3px 0;
+    border-color: @shadow;
+    placeholder: "Buscar aplicaciones...";
+    placeholder-color: @fg-muted;
+    vertical-align: 0.5;
+}
+
+/* Listview y Elementos (Sin cambios significativos) */
 listview {
-    lines: 6;
-    spacing: 0px;
+    lines: 4;
     scrollbar: false;
+    fixed-height: false;
+    margin: 0 15px 15px 15px;
 }
 
-/* Elements */
 element {
-    padding: 7px;
-    border-radius: 10px;
-    background-color: transparent;
+    padding: 10px;
+    margin: 0 0 2px 0;
+    border-radius: 5px 20px;
+    background-color: @bg-light;
 }
 
 element-text {
     text-color: @fg-muted;
-    margin: 0 0 0 10px;
-    highlight: @highlight;
+    margin: 0 0 0 15px;
 }
 
-/* Selected element */
 element selected {
     background-color: @accent;
-    border: 0 0 3px 0;
-    border-color: black;
-}
-
-element selected element-text {
-    text-color: #1e1e2e;
+    border: 0 0 0 4px;
+    border-color: white;
 }
