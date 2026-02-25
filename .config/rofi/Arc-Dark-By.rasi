@@ -19,7 +19,7 @@
 
 /* Window */
 window {
-    width: 400px;
+    width: 500px;
     location: center;
     anchor: north;
     y-offset: -120px;
@@ -30,68 +30,99 @@ window {
 
 mainbox {
     spacing: 15px; /* Espacio entre el inputbar y la lista */
-    children: [ inputbar, listview ];
+    children: [ inputbar, listview, mode-switcher ];
 }
 
 /* Contenedor del Input */
 inputbar {
-    children: [ prompt, entry ];
-    spacing: 10px; /* SEPARACIÓN ENTRE ICONO Y ENTRY */
+    children: [ container-prompt, entry, contador ];
+    spacing: 8px; 
     orientation: horizontal;
-	margin: 15px 15px 0px 15px;
+    margin: 15px 15px 0px 15px;
     enabled: true;
 }
 
-/* El prompt ahora hereda el estilo del icono */
+container-prompt {
+    expand: false;
+    width: 75px;
+    background-color: @accent;
+    border-radius: 5px;
+    
+    orientation: horizontal;
+    children: [ dummy, prompt, dummy ];
+}
+
+/* Espaciador invisible que empuja al prompt al centro */
+dummy {
+    expand: true;
+}
+
 prompt {
     enabled: true;
-    padding: 15px 17px 15px 15px;
-    background-color: @bg-alt;
-    border-radius: 5px;
-    border: 0 0 3px 0;
-    border-color: @shadow;
-    vertical-align: 0.5;
+    padding: 10px 0px;
     text-color: @fg;
-    background-color: @accent;
+    vertical-align: 0.5;
+    /* Ya no necesita width ni horizontal-align aquí 
+       porque los dummy lo centran */
 }
 
-/* Icono */
-textbox-search-icon {
-    expand: false;
-    str: "";
-    background-color: @bg-alt; /* Fondo propio */
-    border-radius: 5px;
-    border: 0 0 3px 0;
-    border-color: @shadow;
-    vertical-align: 0.5;
-    text-color: @fg;
-}
 
-/* Elemento Independiente: Entrada de texto */
+/* Ajuste del entry para que no se sienta pegado */
 entry {
     expand: true;
-    padding: 12px;
-    background-color: @bg-alt; /* Fondo propio */
+    padding: 10px;
+    background-color: @bg-alt;
     border-radius: 5px;
-    border: 0 0 3px 0;
-    border-color: @shadow;
-    placeholder: "Buscar aplicaciones...";
+    placeholder: "Escribe para filtrar...";
     placeholder-color: @fg-muted;
     vertical-align: 0.5;
 }
 
-/* Listview y Elementos (Sin cambios significativos) */
+contador {
+	children: [ "num-filtered-rows", "textbox-num-sep", "num-rows" ];
+	expand: false;
+	orientation: horizontal;
+	padding: 10px 8px 10px 8px;
+	vertical-align: 0.5;
+    background-color: @bg-alt;
+    border-radius: 5px;
+	vertical-align: 0.5;
+}
+
+num-filtered-rows {
+    enabled:                     true;
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+textbox-num-sep {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "/";
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+num-rows {
+    enabled:                     true;
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+
+/* Listview y Elementos*/
 listview {
     lines: 4;
+    columns: 2;
+    spacing: 8px;
     scrollbar: false;
     fixed-height: false;
-    margin: 0 15px 15px 15px;
+    margin: 0 15px 0px 15px;
 }
 
 element {
     padding: 10px;
-    margin: 0 0 2px 0;
-    border-radius: 5px 20px;
+    border-radius: 5px 5px;
     background-color: @bg-light;
 }
 
@@ -102,6 +133,22 @@ element-text {
 
 element selected {
     background-color: @accent;
-    border: 0 0 0 4px;
+    border: 0 0 0 5px;
     border-color: white;
+}
+
+mode-switcher {
+	enabled: true;
+	spacing: 8px;
+    margin: 0 15px 15px 15px;
+}
+
+button {
+	padding: 8px;
+    border-radius: 5px;
+	background-color:  @bg-alt;
+}
+
+button selected {
+	background-color: @accent;
 }

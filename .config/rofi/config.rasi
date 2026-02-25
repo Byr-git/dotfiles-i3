@@ -1,9 +1,9 @@
 configuration {
-    display-drun: "Apps";
+	modi: "drun,󰯂  Run:~/Scripts/launcher-scripts.sh";
     drun-display-format: "{name}";
     drun-match-fields: "name";
     fixed-num-lines: false;
-    display-drun: "";
+    display-drun: "  Apps";
     display-run:  "";
 }
 
