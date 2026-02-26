@@ -3,5 +3,7 @@
     "redhat.telemetry.enabled": false,
     "workbench.startupEditor": "none",
     "editor.minimap.enabled": false,
-    "window.menuBarVisibility": "compact"
+    "window.menuBarVisibility": "compact",
+    "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+    "terminal.integrated.enablePersistentSessions": false
 }
