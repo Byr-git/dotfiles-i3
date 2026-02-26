@@ -157,7 +157,7 @@ client.focused          #131519 #222E73 #FFFFFF #00796B   #303F9F
 client.unfocused        #131519 #131519 #ADADAD #00796B   #222222
 
 # Ejecuciones al inicio
-exec --no-startup-id ~/Scripts/change-wallpaper.sh apply
+exec --no-startup-id ~/Scripts/rofi/change-wallpaper.sh apply
 exec --no-startup-id lxpolkit
 exec --no-startup-id setxkbmap -option esperanto:qwerty
 
