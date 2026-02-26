@@ -168,7 +168,7 @@ bindsym --release $mod+b bar mode toggle
 bindsym $mod+Return exec lxterminal
 bindsym $mod+f exec pcmanfm
 bindsym $mod+w exec gtk-launch chromium
-bindsym Print exec --no-startup-id ~/Scripts/screenshoot.sh
+bindsym Print exec --no-startup-id ~/Scripts/rofi/screenshoot.sh
 
 # reglas
 for_window [title="kazam"] floating enable
