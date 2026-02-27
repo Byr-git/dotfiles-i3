@@ -31,14 +31,15 @@ window {
 mainbox {
     spacing: 15px; /* Espacio entre el inputbar y la lista */
     children: [ inputbar, listview, mode-switcher ];
+    margin: 18px;
 }
 
 /* Contenedor del Input */
 inputbar {
     children: [ container-prompt, entry, contador ];
-    spacing: 8px; 
+    spacing: 10px; 
     orientation: horizontal;
-    margin: 15px 15px 0px 15px;
+    /*margin: 15px 15px 0px 15px;*/
     enabled: true;
 }
 
@@ -62,8 +63,6 @@ prompt {
     padding: 10px 0px;
     text-color: @fg;
     vertical-align: 0.5;
-    /* Ya no necesita width ni horizontal-align aquí 
-       porque los dummy lo centran */
 }
 
 
@@ -114,33 +113,34 @@ num-rows {
 listview {
     lines: 4;
     columns: 2;
-    spacing: 8px;
+    spacing: 10px;
     scrollbar: false;
     fixed-height: false;
-    margin: 0 15px 0px 15px;
+    /*margin: 0 15px 0px 15px;*/
 }
 
 element {
     padding: 10px;
     border-radius: 5px 5px;
     background-color: @bg-light;
+    border: 0 0 0 5px;
+    border-color: transparent;
 }
 
 element-text {
     text-color: @fg-muted;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 5px;
 }
 
 element selected {
     background-color: @accent;
-    border: 0 0 0 5px;
     border-color: white;
 }
 
 mode-switcher {
 	enabled: true;
-	spacing: 8px;
-    margin: 0 15px 15px 15px;
+	spacing: 10px;
+    /*margin: 0 15px 15px 15px;*/
 }
 
 button {
