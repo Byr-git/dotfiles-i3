@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FOLDER="$HOME/Scripts"
+FOLDER="$HOME/Scripts/rofi"
 
 # listar los archivos de la carpeta
 if [ -z "$1" ]; then
