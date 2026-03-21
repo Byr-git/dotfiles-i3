@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DMENU=(rofi -dmenu -i -p "" -theme-str 'entry { placeholder: "Selecciona una opción..."; }')
+DMENU=(rofi -dmenu -i -p "" -theme-str "entry { placeholder: \"Selecciona una opción...\"; } mode-switcher { enabled: false; }")
 
 # --- MENÚ PRINCIPAL ---
 MODE=$(printf "  Configuración i3wm\n  Configuración i3Blocks\n  Configuración Dunst\n  Configuración LXTerminal\n  Configuración Rofi" | "${DMENU[@]}")
