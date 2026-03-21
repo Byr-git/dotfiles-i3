@@ -7,18 +7,18 @@ FILE="$DIR/$(date +%Y-%m-%d_%H%M%S).png"
 FILE2="$DIR2/$(date +%Y-%m-%d_%H%M%S).png"
 REAL="${FILE#$HOME/}"
 
-DMENU=(dmenu -i -c -l 6 -bw 1 -h 30 -fn "Arimo Nerd Font-10" -sb "#263380" -nb "#0F1011" -nf '#ebdbb2' -p " Screenshoot: ")
+DMENU=(rofi -dmenu -i -theme horizontal.rasi -p "  Captura" -theme-str "entry { placeholder: \"Elige una opción...\"; }")
 
 # Menú de opciones
-OPTION=$(printf "󰹑 Pantalla Completa\n󱅫 Notificación\n󱣴 Capturar Área\n󱂬 Capturar Ventana\n󱫢 Captura +3-Seg." | "${DMENU[@]}")
+OPTION=$(printf "󰹑\n󱅫\n󱣴\n󱂬\n󱫢" | "${DMENU[@]}")
 SUB_OPTION=$(printf "$OPTION")
 
 case "$OPTION" in
-    "󰹑 Pantalla Completa")
+    "󰹑")
         sleep 0.2
         scrot --pointer "$FILE"
         ;;
-    "󱅫 Notificación")
+    "󱅫")
     	scrot --pointer "$FILE2"
     	sleep 3
     	notify-send -u low -i "$FILE2" "󰆓 Capturado:" "~/$REAL"
@@ -26,15 +26,15 @@ case "$OPTION" in
     	scrot --pointer "$FILE"
     	rm -f "$FILE2"
     	;;    
-    "󱣴 Capturar Área")
+    "󱣴")
         sleep 0.2
         scrot --select --line mode=edge "$FILE"
         ;;
-    "󱂬 Capturar Ventana")
+    "󱂬")
         sleep 0.2
         scrot --focused "$FILE"
         ;;
-    "󱫢 Captura +3-Seg.")
+    "󱫢")
         scrot --pointer -d 3 "$FILE"
         ;;
     *)
