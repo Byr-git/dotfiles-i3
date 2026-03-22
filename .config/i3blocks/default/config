@@ -4,43 +4,43 @@
 interval=5
 
 [Music]
-command=~/Scripts/i3blocks/music.sh
+command=~/.config/i3blocks/default/scripts-bash/music.sh
 signal=15
 markup=pango
 separator=false
 
 #[Network]
-#command=~/i3blocks/internet.sh
+#command=~/.config/i3blocks/default/scripts-bash/internet.sh
 #interval=10
 #markup=pango
 #separator=false
 
 [CPU]
-command=~/Scripts/i3blocks/scripts-c/cpu-s
+command=~/.config/i3blocks/default/scripts-c/cpu-s
 interval=persist
 markup=pango
 separator=false
 
 [Disk]
-command=~/Scripts/i3blocks/almacenamiento.sh
+command=~/.config/i3blocks/default/scripts-bash/almacenamiento.sh
 interval=120
 markup=pango
 separator=false
 
 [Memory]
-command=~/Scripts/i3blocks/scripts-c/ram-s
+command=~/.config/i3blocks/default/scripts-c/ram-s
 interval=5
 markup=pango
 separator=false
 
 [time]
-command=~/Scripts/i3blocks/tiempo.sh
+command=~/.config/i3blocks/default/scripts-bash/tiempo.sh
 interval=60
 markup=pango
 separator=false
 
 [Volume]
-command=~/Scripts/i3blocks/volume.sh
+command=~/.config/i3blocks/default/scripts-bash/volume.sh
 interval=once
 signal=7
 markup=pango
@@ -48,7 +48,7 @@ separator=true
 separator_block_width=15
 
 [Power Off]
-command=~/Scripts/i3blocks/apagar-reboot-logout.sh
+command=~/.config/i3blocks/default/scripts-bash/apagar-reboot-logout.sh
 interval=once
 markup=pango
 separator=false
