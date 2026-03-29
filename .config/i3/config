@@ -53,12 +53,12 @@ bindsym $mod+masculine scratchpad show
 bindsym $mod+Shift+masculine move scratchpad
 
 # workspaces
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 
 # switch workspaces
 bindsym $mod+1 workspace $ws1
@@ -123,26 +123,28 @@ mode "M: " {
 }
 bindsym $mod+v mode "M: ", exec --no-startup-id notify-send -u low -i "~/Imágenes/icons/indicator-messages.svg" "i3wm Mode:" "Modo Volumen (Activado)"
 
-bar {
-    status_command i3blocks
-    position top
-    #height 14
-    modifier none
-    font pango:Arimo Nerd Font Regular 8.2
-    strip_workspace_numbers yes
+#bar {
+#    status_command i3blocks
+#    position top
+#    #height 14
+#    modifier none
+#    font pango:Arimo Nerd Font Regular 8.5
+#    strip_workspace_numbers yes
+#
+#    colors {
+#    #statusline	#000000
+#    #background	#0E1922
+#    #separator	#D3D7CF
+#
+#    #name              #border #bg     #text
+#    focused_workspace  #131519 #303F9F #D3D7CF
+#    active_workspace   #131519 #0f1316 #D3D7CF
+#    inactive_workspace #131519 #0f1316 #D3D7CF
+#    urgent_workspace   #131519 #00796B #FFFFFF
+#    }
+#}
 
-    colors {
-    #statusline	#000000
-    #background	#0E1922
-    #separator	#D3D7CF
-
-    #name              #border #bg     #text
-    focused_workspace  #131519 #303F9F #D3D7CF
-    active_workspace   #131519 #0f1316 #D3D7CF
-    inactive_workspace #131519 #0f1316 #D3D7CF
-    urgent_workspace   #131519 #00796B #FFFFFF
-    }
-}
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 title_align center
 # bordes
