@@ -1,0 +1,52 @@
+#!/bin/bash
+
+COLOR1="#FFEECC"
+COLOR2="#FFB3B3"
+
+notificacion() {
+if [[ $ELECCION == " Apagar" ]]; then
+    titulo="Apagando..."
+elif [[ $ELECCION == " Reiniciar" ]]; then
+    titulo="Reiniciando..."
+else
+    titulo="Cerrando Sesión..."
+fi
+
+for i in {0..100..10}; do
+  notify-send \
+    -h int:value:$i \
+    -h string:x-dunst-stack-tag:carga_demo \
+    -t 3000 \
+    -i "$HOME/Imágenes/icons/indicator-messages.svg" \
+    "$titulo" \
+    "Por favor espera"
+  sleep 0.27
+done
+}
+
+menu_apagado() {
+OPCIONES=" Apagar\n Reiniciar\n󰿅 Cerrar Sesión"
+
+ELECCION=$(echo -e "$OPCIONES" | dmenu -i -c -l 3 -bw 1 -h 30 \
+-fn "Arimo Nerd Font-10" \
+-sb "#263380" -nb "#0F1011" -nf "#ebdbb2" \
+-p "󰹯 Menú:")
+
+case "$ELECCION" in
+    " Apagar")
+        notificacion
+        sudo /sbin/shutdown -h now
+        ;;
+    " Reiniciar")
+        notificacion
+        sudo /sbin/shutdown -r now
+        ;;
+    "󰿅 Cerrar Sesión")
+        notificacion
+        i3-msg exit
+        ;;
+esac
+}
+
+# Ejecutar directamente
+menu_apagado
