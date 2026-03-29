@@ -1,0 +1,138 @@
+/*********************************
+ * Minimal Rofi Theme
+ *********************************/
+
+* {
+    bg:        #0F1011;
+    bg-alt:    rgba(49, 50, 68, 60%);
+    bg-light:  #1A1A1A;
+    fg:        #ffffff;
+    fg-muted:  #ffffff;
+    accent:    #263380;
+    highlight: bold #FFEB80;
+    shadow:    #0A0A0A;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "Arimo Nerd Font Mono 9";
+}
+
+/* Window */
+window {
+    width: 500px;
+    location: center;
+    anchor: north;
+    y-offset: -90px;
+    background-color: @bg;
+    border: 1px;
+    border-color: @fg;
+}
+
+mainbox {
+    spacing: 15px;
+    children: [ inputbar, listview ];
+    margin: 18px;
+}
+
+/* Contenedor del Input */
+inputbar {
+    children: [ container-prompt, entry, contador ];
+    spacing: 10px; 
+    orientation: horizontal;
+    enabled: true;
+}
+
+container-prompt {
+    expand: false;
+    width: 84px;
+    background-color: @accent;
+    border-radius: 5px;
+    
+    orientation: horizontal;
+    children: [ dummy, prompt, dummy ];
+}
+
+/* Espaciador invisible que empuja al prompt al centro */
+dummy {
+    expand: true;
+}
+
+prompt {
+    enabled: true;
+    padding: 10px 0px;
+    text-color: @fg;
+    vertical-align: 0.5;
+}
+
+
+/* Ajuste del entry para que no se sienta pegado */
+entry {
+    expand: true;
+    padding: 10px;
+    background-color: @bg-alt;
+    border-radius: 5px;
+    placeholder: "Escribe para filtrar...";
+    placeholder-color: @fg-muted;
+    vertical-align: 0.5;
+}
+
+contador {
+	children: [ "num-filtered-rows", "textbox-num-sep", "num-rows" ];
+	expand: false;
+	orientation: horizontal;
+	padding: 10px 8px 10px 8px;
+	vertical-align: 0.5;
+    background-color: @bg-alt;
+    border-radius: 5px;
+	vertical-align: 0.5;
+}
+
+num-filtered-rows {
+    enabled:                     true;
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+textbox-num-sep {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "/";
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+num-rows {
+    enabled:                     true;
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+
+/* Listview y Elementos*/
+listview {
+	orientation: horizontal;
+    lines: 1;
+    columns: 5;
+    spacing: 10px;
+    scrollbar: false;
+    fixed-height: false;
+}
+
+element {
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: @bg-light;
+    border: 0 0 5px 0;
+    border-color: transparent;
+}
+
+element-text {
+    font: "Hack Nerd Font Mono 20";
+    text-color: @fg-muted;
+    horizontal-align: 0.5;
+}
+
+element selected {
+    background-color: @accent;
+    border-color: white;
+}
