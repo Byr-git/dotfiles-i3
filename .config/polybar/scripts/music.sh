@@ -13,7 +13,7 @@ print_status() {
     DATA=$(playerctl metadata --format '{{status}}|{{artist}}|{{title}}' 2>/dev/null)
 
     if [[ -z "$DATA" ]]; then
-        echo "%{F$COLOR1} %{F$COLOR1}󰝚  %{F$COLOR2}󰇘 %{F$COLOR1}"
+        echo "%{F$COLOR1}"
         return
     fi
 
@@ -27,13 +27,13 @@ print_status() {
         TEXT="$artist - $title"
         [[ ${#TEXT} -gt $MAX ]] && TEXT="${TEXT:0:$MAX}…"
 
-        echo "%{F$COLOR1} %{F$COLOR1}󰝚  %{F$COLOR2}$TEXT %{F$COLOR1}"
+        echo "%{F$COLOR1}󰝚  %{F$COLOR2}$TEXT"
 
     elif [[ "$status" == "Paused" ]]; then
-        echo "%{F$COLOR1} %{F$COLOR1} %{F$COLOR2}$artist - $title %{F$COLOR1}"
+        echo "%{F$COLOR1}  %{F$COLOR2}$artist - $title"
 
     else
-        echo "%{F$COLOR1} %{F$COLOR1}󰝚  %{F$COLOR2}󰇘 %{F$COLOR1}"
+        echo "%{F$COLOR1}"
     fi
 }
 
